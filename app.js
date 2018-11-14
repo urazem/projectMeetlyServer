@@ -7,9 +7,9 @@ app.use(bodyParser.json());
 //app.use(logger('dev'));
 var AuthController = require('./auth/AuthController');
 var MeetController = require('./meets/MeetController');
-
-app.use('/api/auth', AuthController);
-app.use('/api/meets', MeetController);
+// 
+// app.use('/api/auth', AuthController);
+// app.use('/api/meets', MeetController);
 
 app.listen(port);
 
