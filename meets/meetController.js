@@ -16,14 +16,14 @@ router.get('/getPlaces', (req, res) => {
     });
 });
 
-router.delete('/deleteAllMeets', (req, res) => {
-  let id = req.body.user_id;
-    let sql = "DELETE from participants WHERE user_id = '"+id+"'";
-    connection.query(sql, (err, result) => {
-      if(err) res.status(500).json({message: "Invalid Request"});
-      res.status(200).json({message: "Meets successfully deleted."});
-    });
-});
+// router.delete('/deleteAllMeets', (req, res) => {
+//   let id = req.body.user_id;
+//     let sql = "DELETE from participants WHERE user_id = '"+id+"'";
+//     connection.query(sql, (err, result) => {
+//       if(err) res.status(500).json({message: "Invalid Request"});
+//       res.status(200).json({message: "Meets successfully deleted."});
+//     });
+// });
 
 router.post('/anotherPlace', (req, res) => {
     let name = req.body.name || null;
