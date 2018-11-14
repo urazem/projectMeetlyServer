@@ -9,9 +9,7 @@ const connection = require('./../db/db_config');
 var VerifyToken = require('./VerifyToken');
 
 var code;
-router.get('/', (req, res) => {
-  res.end("welcome");
-});
+
 router.post('/register', function(req, res) {
   let telephone = req.body.telephone;
   if(telephone) {
