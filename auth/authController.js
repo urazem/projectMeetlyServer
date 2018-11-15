@@ -6,7 +6,7 @@ router.use(bodyParser.json());
 var jwt = require('jsonwebtoken');
 const config = require('../config');
 const connection = require('./../db/db_config');
-var VerifyToken = require('./VerifyToken');
+var VerifyToken = require('./verifyToken');
 
 var code;
 
