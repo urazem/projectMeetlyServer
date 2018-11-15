@@ -9,12 +9,12 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
   res.status(200).send('API works.');
 });
- var AuthController = require(__root + 'auth/AuthController.js');
-  app.use('/api/auth', AuthController);
-// var MeetController = require(__root + 'meets/MeetController');
+ // var AuthController = require(__root + 'auth/authController.js');
+ //  app.use('/api/auth', AuthController);
+var MeetController = require(__root + 'meets/MeetController');
 
 
-// app.use ('/api/meets', MeetController);
+app.use ('/api/meets', MeetController);
 
 app.listen(port);
 
