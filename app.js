@@ -1,9 +1,9 @@
-const express    = require('express');
-const app        = express();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
-const router 	   = express.Router();
-const port 	   = process.env.PORT || 8080;
-global.__root   = __dirname + '/';
+const router = express.Router();
+const port = process.env.PORT || 8080;
+global.__root = __dirname + '/';
 app.use(bodyParser.json());
 //app.use(logger('dev'));
 app.get('/api', function (req, res) {
