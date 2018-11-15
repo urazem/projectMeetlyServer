@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
   res.status(200).send('API works.');
 });
- var AuthController = require(__dirname + '/auth/authController.js');
+ var AuthController = require('./auth/authController.js');
   app.use('/api/auth', AuthController);
-var MeetController = require(__dirname + '/meets/meetController');
+var MeetController = require('./meets/meetController');
 
 
 app.use ('/api/meets', MeetController);
