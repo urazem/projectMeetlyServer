@@ -10,6 +10,7 @@ var VerifyToken = require('./verifyToken');
 
 var code;
 
+
 router.post('/authenticate', function(req, res) {
   let telephone = req.body.telephone;
   if(telephone) {
@@ -23,11 +24,11 @@ router.post('/authenticate', function(req, res) {
           res.status(409).json ({auth: true, message: "343631"});
         }
         else {
-          res.json ({auth: false, message: "343631"});
+          res.status(200).json({auth: false, message: "343631"});
         }
     });
   } else {
-    res.json ({message: "Telephone is not valid"});
+    res.status(200).json ({message: "Telephone is not valid"});
   }
 });
 
@@ -91,7 +92,7 @@ router.post('/loginConfirmSms', function(req, res) {
       if (err) return res.status(500).json({message: "Error on the server."});
       else {
         userId = user[0].user_id;
-        console.log(userId);
+        //console.log(userId);
   var token = jwt.sign({ id: user.user_id }, config.secret, {
     expiresIn: 86400 // expires in 24 hours
   });
