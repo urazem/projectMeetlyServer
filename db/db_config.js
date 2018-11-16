@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connection = mysql.createPool({
-    connectionLimit: 100000,
+    connectionLimit: 10,
     host: 'us-cdbr-iron-east-01.cleardb.net',
     user: 'b8aba776cda548',
     password: '13e72bdc',
@@ -10,8 +10,10 @@ connection.getConnection( (err, tempCon) => {
     if(err){
         throw err;
     }
-    else
+    if(tempCon) {
     console.log("Database is connected successfully");
     tempCon.release();
+  }
+  return;
 });
 module.exports = connection;
