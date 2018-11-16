@@ -117,12 +117,12 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/getProfile', VerifyToken, function(req, res) {
-  let id = req.params.id;
+  //let id = req.params.id;
   let sql = "SELECT user_id, name, surname, telephone from users WHERE user_id = '"+req.userId+"' ";
   connection.query(sql, (error, result) => {
     if (error) return res.status(500).json({message: "There was a problem finding the user."});
     if (!result) return res.status(404).json({message: "No user found."});
-    res.status(200).send(result);
+    res.status(200).send(result[0]);
 
   });
 });
