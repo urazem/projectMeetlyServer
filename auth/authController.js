@@ -36,6 +36,7 @@ router.post('/confirmSms', function(req, res) {
   let code = req.body.code;
   let telephone = req.body.telephone;
   let auth = req.body.auth;
+  var userId;
   if(code != "343631") return res.status(401).send({ auth: false, token: null, message: "Wrong code" });
   else if(auth) {
     connection.query ("SELECT user_id from users WHERE telephone = '" +telephone+ "'", (err, user) => {
