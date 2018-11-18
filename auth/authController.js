@@ -32,46 +32,45 @@ router.post('/authenticate', function(req, res) {
   }
 });
 
-router.post('/confirmSms', function(req, res) {
-  let code = req.body.code;
-  let telephone = req.body.telephone;
-  let auth = req.body.auth;
-  var userId;
-  if(code != "343631") return res.status(401).send({ auth: false, token: null, message: "Wrong code" });
-  else if(auth) {
-    connection.query ("SELECT user_id from users WHERE telephone = '" +telephone+ "'", (err, user) => {
-        if (err) return res.status(500).json({message: "Error on the server."});
-        else {
-          userId = user[0].user_id;
-          console.log(userId);
-    var token = jwt.sign({ id: userId }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-    res.status(200).send({ auth: true, token: token, id: userId, message: "Login successfully. " });
-  }
-  });
-
-  } else if(!auth) {
-    let sql = "INSERT INTO users (telephone) VALUES  ('"+telephone+"') ";
-    connection.query(sql, (error, result) => {
-        if(error) {
-          //console.log(error);
-           res.status(500).json({message:"There was a problem registering the user." });
-        }
-        connection.query ("SELECT * from users WHERE telephone = '" +telephone+ "'", (err, user) => {
-            if (err) return res.status(500).json({message: "Error on the server."});
-            else {
-              var token = jwt.sign({ id: user.insertId }, config.secret, {
-                expiresIn: 86400 // expires in 24 hours
-              });
-              res.status(200).json({ auth: true, token: token, id: result.insertId, message: "User successfully registered. " });
-            }
-        });
-
-    });
-  }
-
-});
+// router.post('/confirmSms', function(req, res) {
+//   let code = req.body.code;
+//   let telephone = req.body.telephone;
+//   let auth = req.body.auth;
+//   var userId;
+//   if(code != "343631") return res.status(401).send({ auth: false, token: null, message: "Wrong code" });
+//   else if(auth) {
+//     connection.query ("SELECT user_id from users WHERE telephone = '" +telephone+ "'", (err, user) => {
+//         if (err) return res.status(500).json({message: "Error on the server."});
+//         else {
+//           userId = user[0].user_id;
+//           console.log(userId);
+//     var token = jwt.sign({ id: userId }, config.secret, {
+//       expiresIn: 86400 // expires in 24 hours
+//     });
+//     res.status(200).send({ auth: true, token: token, id: userId, message: "Login successfully. " });
+//   }
+//   });
+//
+//   } else if(!auth) {
+//     let sql = "INSERT INTO users (telephone) VALUES  ('"+telephone+"') ";
+//     connection.query(sql, (error, result) => {
+//         if(error) {
+//           //console.log(error);
+//            res.status(500).json({message:"There was a problem registering the user." });
+//         }
+//         connection.query ("SELECT * from users WHERE telephone = '" +telephone+ "'", (err, user) => {
+//             if (err) return res.status(500).json({message: "Error on the server."});
+//             else {
+//               var token = jwt.sign({ id: user.insertId }, config.secret, {
+//                 expiresIn: 86400 // expires in 24 hours
+//               });
+//               res.status(200).json({ auth: true, token: token, id: result.insertId, message: "User successfully registered. " });
+//             }
+//         });
+//
+//     });
+//   }
+// });
 
 
 router.post('/registerConfirmSms', function(req, res) {
