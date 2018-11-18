@@ -54,7 +54,7 @@ router.post('/registerConfirmSms', function(req, res) {
 
     });
   } else {
-    res.status(500).json({message: "Wrong code"});
+    res.status(500).json({auth: false, message: "Wrong code"});
   }
 });
 
@@ -73,8 +73,6 @@ router.post('/loginConfirmSms', function(req, res) {
   });
   res.status(200).send({ auth: true, token: token, id: userId, message: "Login successfully. " });
 }
-
-
 });
 });
 
