@@ -62,7 +62,7 @@ router.post('/loginConfirmSms', function(req, res) {
   let code = req.body.code;
   let telephone = req.body.telephone;
   var userId;
-  if(code != "343631") return res.status(401).send({ auth: false, token: null, message: "Wrong code" });
+  if(code != "343631") return res.status(500).send({ auth: false, token: null, message: "Wrong code" });
   connection.query ("SELECT user_id from users WHERE telephone = '" +telephone+ "'", (err, user) => {
       if (err) return res.status(500).json({message: "Error on the server."});
       else {
